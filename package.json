@@ -1,0 +1,10 @@
+{
+  "name": "amsterdam-tree-governance-explorer",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "sync-model": "node scripts/sync-model.js",
+    "validate": "node scripts/validate-model.js",
+    "check": "npm run sync-model && npm run validate"
+  }
+}

@@ -1,10 +1,12 @@
 {
   "name": "amsterdam-tree-governance-explorer",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "sync-model": "node scripts/sync-model.js",
     "validate": "node scripts/validate-model.js",
-    "check": "npm run sync-model && npm run validate"
+    "check": "npm run validate && node --check assets/js/explorer.js && npm test",
+    "test": "node --test tests/model.test.js",
+    "standalone": "node scripts/build-standalone.js"
   }
 }

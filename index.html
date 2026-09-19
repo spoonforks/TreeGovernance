@@ -1,48 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Amsterdam Tree Governance Explorer</title>
-<meta name="description" content="Interactive prototype map of Amsterdam's public-tree governance and management system." />
-<link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amsterdam Tree Governance Explorer</title>
+  <meta name="description" content="Explore Amsterdam tree governance at three levels: the system, action situations, and evidenced relationships between elements.">
+  <meta name="theme-color" content="#f5f3ec">
+  <link rel="stylesheet" href="assets/css/explorer.css?v=0.4">
 </head>
 <body>
-<div class="app">
-<header><div class="title"><h1>Amsterdam Tree Governance Explorer</h1><p>Prototype research map of how public trees move through policy, design, monitoring, maintenance, permitting, participation and ecological feedback.</p></div><div class="status"><span class="dot"></span> v0.3 · audited research prototype · 19 Sep 2026</div></header>
-<div class="toolbar">
-  <div class="control search"><label class="small" for="search">Find an element</label><input id="search" type="text" placeholder="e.g. permit, contractor, biodiversity…" /></div>
-  <div class="control"><label class="small" for="lens">Lens</label><select id="lens">
-    <option value="all">Whole system</option><option value="lifecycle">Tree lifecycle</option><option value="governance">Governance & authority</option>
-    <option value="information">Information & monitoring</option><option value="participation">Public participation</option><option value="projects">Public-space projects</option>
-    <option value="permits">Permits & removal</option><option value="ecology">Biodiversity & outcomes</option><option value="policy">Policy translation</option>
-  </select></div>
-  <div class="control"><label class="small" for="layout">Layout</label><select id="layout"><option value="organic">Organic / Kumu-like</option><option value="flow">Process flow</option><option value="concentric">Type rings</option></select></div>
-  <button id="fit" type="button">Fit</button><button id="reflow" type="button">Reflow</button><button id="reset" type="button">Reset</button><button id="sourcesBtn" type="button">Sources</button><button id="exportBtn" type="button">Export JSON</button>
-  <div class="checkline"><input id="labels" type="checkbox" /><label for="labels">relation labels</label></div>
-  <div class="checkline"><input id="documentedOnly" type="checkbox" /><label for="documentedOnly">documented edges only</label></div>
-</div>
-<div class="workspace">
-<section class="graph-wrap" aria-label="Interactive governance network">
-<svg id="graph" role="img" aria-label="Network of actors, processes, information, rules and ecological outcomes">
-<defs>
-  <marker id="arr-authority" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6e6962"/></marker>
-  <marker id="arr-information" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6d86a5"/></marker>
-  <marker id="arr-operation" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#738d68"/></marker>
-  <marker id="arr-participation" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b08459"/></marker>
-  <marker id="arr-resource" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b7898"/></marker>
-  <marker id="arr-ecology" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#75976a"/></marker>
-  <marker id="arr-context" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#173d32"/></marker>
-</defs>
-<g id="viewport"><g id="edges"></g><g id="edgeLabels"></g><g id="nodes"></g></g>
-</svg>
-<div class="graph-hud"><div class="legend"><span><i class="swatch" style="background:var(--actor)"></i>Actor</span><span><i class="swatch" style="background:var(--process)"></i>Process</span><span><i class="swatch" style="background:var(--data)"></i>Data / object</span><span><i class="swatch" style="background:var(--rule)"></i>Rule / policy</span><span><i class="swatch" style="background:var(--ecology)"></i>Ecology</span></div>
-<div class="shape-legend"><span><i class="shape-chip circle"></i>circle = actor</span><span><i class="shape-chip rect"></i>rounded box = process</span><span><i class="shape-chip diamond"></i>diamond = data</span><span><i class="shape-chip hex"></i>hexagon = rule</span><span><i class="shape-chip circle ecology"></i>green circle = ecology</span></div>
-<div class="edge-key"><span><i class="edge-sample" style="border-top-color:var(--authority)"></i>authority</span><span><i class="edge-sample dash" style="border-top-color:var(--information)"></i>information</span><span><i class="edge-sample" style="border-top-color:var(--operation)"></i>operation</span><span><i class="edge-sample dash" style="border-top-color:var(--participation)"></i>participation</span><span><i class="edge-sample" style="border-top-color:var(--ecologyEdge)"></i>ecology</span></div><div class="stats" id="stats">—</div></div>
-</section>
-<aside class="side" aria-live="polite"><div class="side-head"><div class="side-head-row"><div class="side-title">Explorer</div><button id="clearHighlight" class="ghost" type="button">Clear highlight</button></div><div class="tabs"><button type="button" class="active" data-tab="details">Details</button><button type="button" data-tab="path">Path finder</button><button type="button" data-tab="guide">Guide</button></div></div><div class="side-body" id="sideBody"></div></aside>
-</div></div>
-<script src="data/model.js"></script>
-<script src="assets/js/app.js"></script>
-</body>
-</html>
+<a class="skip-link" href="#main">Skip to explorer</a>
+<header class="masthead">
+  <a href="#view=system" class="brand"><span class="brand-mark" aria-hidden="true">↟</span><span><strong>Amsterdam</strong><span>Tree Governance Explorer</span></span></a>
+  <div class="header-tools"><span class="version">RESEARCH ATLAS <b>v0.4</b></span><button data-action="method">About the model</button><a href="https://github.com/spoonforks/TreeGovernance" target="_blank" rel="noopener">GitHub ↗</a></div>
+</header>
+<nav class="nav-bar" aria-label="Exploration levels"><div id="levels"></div><div class="tools"><button data-action="trace">Trace a route</button><button data-action="export">Export model</button></div></nav>
+<div class="search-bar"><div id="breadcrumbs" aria-label="Breadcrumb"></div><div class="search-wrap"><label for="search">Find an element</label><input id="search" type="search" autocomplete="off" placeholder="Tree expert, permit, replant fund…"><div id="searchResults" hidden></div></div></div>
+<div class="workspace"><main id="main" tabindex="-1"><div class="loading">Loading the three-level model…</div></main><aside id="inspector" aria-label="Selection details"></aside></div>
+<footer class="site-footer"><span>Research synthesis · not an official municipal process map</span><span>Same elements. Different levels of detail. <a href="legacy.html">Previous flat map ↗</a></span></footer>
+<dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialog-top"><h2 id="dialogTitle"></h2><button data-action="close-dialog" aria-label="Close dialog">Close ×</button></div><div id="dialogBody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript>This explorer needs JavaScript. The underlying model and sources are available in the GitHub repository.</noscript>
+<script src="data/model.js?v=0.3"></script><script src="assets/js/model-core.js?v=0.4"></script><script src="assets/js/explorer.js?v=0.4"></script>
+</body></html>

@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const read = p => fs.readFileSync(path.join(root, p), 'utf8');
+const safe = x => x.replace(/<\/script/gi, '<\\/script');
+let html = read('index.html').replace(/<link rel="stylesheet"[^>]+>/, '<style>' + read('assets/css/explorer.css') + '</style>');
+html = html.replace(/<script src="data\/model.js[^<]+<\/script>/, '<script>'+safe(read('data/model.js'))+'</script>\n<script>window.TREE_GOV_ARCHITECTURE='+safe(read('data/architecture.json'))+';</script>');
+for (const file of ['model-core.js','explorer.js']) html = html.replace(new RegExp('<script src="assets/js/'+file.replace('.', '\\.')+'[^<]+<\\/script>'), '<script>'+safe(read('assets/js/'+file))+'</script>');
+const out = process.argv[2] || path.join(root,'tree-governance-standalone.html');
+fs.writeFileSync(out, html);
+console.log('Wrote '+out);

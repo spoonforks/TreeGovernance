@@ -1,13 +1,15 @@
 window.TREE_GOV_MODEL = {
   "metadata": {
     "title": "Amsterdam Tree Governance Explorer",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "date": "2026-09-19",
     "scope": "Municipal management of public trees in Amsterdam; interpretive research model.",
     "schema": "Typed property graph. Nodes = actors, processes, data/objects, rules and ecological objects. Edges = typed relations with provenance, basis and confidence.",
     "caveat": "This is a research synthesis, not an official City of Amsterdam organization chart. Some relations are explicit in sources; others are marked as synthesis.",
     "repository": "https://github.com/spoonforks/TreeGovernance",
-    "canonicalData": "data/model.json"
+    "canonicalData": "data/model.json",
+    "lastVerified": "2026-09-19",
+    "verification": "Every node and relation was desk-reviewed against current Amsterdam municipal/regulatory sources; synthesis relations remain interpretive."
   },
   "sources": [
     {
@@ -26,7 +28,7 @@ window.TREE_GOV_MODEL = {
       "id": "S3",
       "title": "Amsterdam Datapunt API - bomen",
       "url": "https://api.data.amsterdam.nl/v1/docs/datasets/bomen.html",
-      "note": "Public tree dataset; source system GISIB; ownership and data-team provenance."
+      "note": "Current public dataset for trees managed by Amsterdam. Source application GISIB; owner/source holder Directie V&OR. Includes tree assets, safety inspections, management measures and kap/herplant process data."
     },
     {
       "id": "S4",
@@ -54,9 +56,9 @@ window.TREE_GOV_MODEL = {
     },
     {
       "id": "S8",
-      "title": "Bomenverordening 2024",
-      "url": "https://lokaleregelgeving.overheid.nl/CVDR713836/",
-      "note": "Current municipal tree ordinance and legal framework for protected tree stock."
+      "title": "Bomenverordening 2014 (Amsterdam)",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR323217",
+      "note": "Current Amsterdam tree ordinance, in force since 2016. Governs felling permissions, refusal grounds, replanting/financial compensation, protected trees and the possibility of requiring a Tree Effect Analysis."
     },
     {
       "id": "S9",
@@ -68,7 +70,7 @@ window.TREE_GOV_MODEL = {
       "id": "S10",
       "title": "Rekenkamer Amsterdam - Onderzoeksopzet Bomenbeleid (2025)",
       "url": "https://www.rekenkamer.amsterdam.nl/documenten/onderzoeksopzet-bomenbeleid/",
-      "note": "Recent synthesis of Amsterdam tree-policy objectives, permit regime, maintenance backlog and replanting issues."
+      "note": "Amsterdam Audit Office 2025 research design for its tree-policy study. Useful as policy/audit context; it is not treated here as a final findings report."
     },
     {
       "id": "S11",
@@ -98,7 +100,7 @@ window.TREE_GOV_MODEL = {
       "id": "S15",
       "title": "Bomenboekhouding | Gemeente Amsterdam",
       "url": "https://www.amsterdam.nl/leefomgeving/groen/bomen/bomenboekhouding/",
-      "note": "Public accounting of permit applications, approvals/refusals and replacement planting."
+      "note": "Current municipal Bomenboekhouding page and quarterly reports on permit applications/decisions, felling and imposed replanting."
     },
     {
       "id": "S16",
@@ -111,42 +113,88 @@ window.TREE_GOV_MODEL = {
       "title": "Omgevingsvisie Amsterdam 2050",
       "url": "https://www.amsterdam.nl/bestuur-organisatie/beleid/omgevingsvisie-amsterdam-2050/",
       "note": "Strategic spatial vision including rigorous greening and ecological considerations."
+    },
+    {
+      "id": "S18",
+      "title": "Stadswerken | Gemeente Amsterdam",
+      "url": "https://www.amsterdam.nl/bestuur-organisatie/organisatie/stadsdelen-beheer-dienstverlening/stadswerken/",
+      "note": "Current organizational description: Stadswerken manages public space; Groen, Flora en Fauna cares for green in parks and neighborhoods."
+    },
+    {
+      "id": "S19",
+      "title": "Boom kappen of snoeien | Gemeente Amsterdam",
+      "url": "https://www.amsterdam.nl/wonen-bouwen-verbouwen/bouwen-verbouwen/omgevingsvergunning/boom-kappen-of-snoeien/",
+      "note": "Current permit guidance: when a tree permit is needed, replant/compensation, publication and objection process."
+    },
+    {
+      "id": "S20",
+      "title": "Bomenboekhouding Q2 2026",
+      "url": "https://assets.amsterdam.nl/publish/pages/1009381/vrm26_0709_bomenboekhouding_a4-tg.pdf",
+      "note": "Current permit-routing detail: district permit departments and daily boards, municipal tree-expert advice, ODNZKG for designated metropolitan areas, and imposed replant/fund accounting."
+    },
+    {
+      "id": "S21",
+      "title": "Plan Biodiversiteit 2025–2030",
+      "url": "https://openresearch.amsterdam/image/2025/4/11/plan_biodiversiteit_2025_2030_definitief.pdf",
+      "note": "Current biodiversity plan for Amsterdam ecological structure and parks. Includes ecological-management contract requirements and four-year ecological monitoring/inspection cycles."
+    },
+    {
+      "id": "S22",
+      "title": "Proef bomenbordjes | Gemeente Amsterdam",
+      "url": "https://www.amsterdam.nl/leefomgeving/groen/proef-bomenbordjes/",
+      "note": "Current citizen-facing description of the Bomenkaart: reports about a tree prompt a municipal check on site; also explains objections to felling permits."
+    },
+    {
+      "id": "S23",
+      "title": "Compensatie en herplant van bomen",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR697591",
+      "note": "Current Amsterdam policy rule implementing article 7 of the Bomenverordening 2014: equivalent replanting, financial compensation and the municipal replant fund."
+    },
+    {
+      "id": "S24",
+      "title": "HIOR Amsterdam",
+      "url": "https://hior.amsterdam.nl/list",
+      "note": "Current Handboek Inrichting Openbare Ruimte index, compiling applicable citywide public-space policies including Puccinimethode, Handboek Groen, Bomenverordening and green/spatial policy."
     }
   ],
   "nodes": [
     {
       "id": "a_college",
-      "label": "College & Council",
+      "label": "College of Mayor & Alderpersons",
       "type": "actor",
       "group": "governance",
-      "summary": "Sets city-wide strategic direction, adopts policy and allocates political/administrative priorities affecting urban trees.",
-      "why": "Represents the political-governance layer above operational tree management.",
+      "summary": "Amsterdam's municipal executive. It exercises executive and delegated powers in tree governance, including powers assigned to the college in the Bomenverordening and implementation of adopted policy.",
+      "why": "Separates executive municipal authority from the Municipal Council, which adopts ordinances and strategic frameworks.",
       "lenses": [
         "governance",
         "policy"
       ],
       "sources": [
-        "S10",
-        "S17"
+        "S8",
+        "S17",
+        "S23"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "translation": "College van burgemeester en wethouders (B&W)"
     },
     {
       "id": "a_vor",
       "label": "V&OR",
       "type": "actor",
       "group": "governance",
-      "summary": "Verkeer & Openbare Ruimte: policy/asset-management actor linked to public-space standards and the municipal tree dataset.",
+      "summary": "Verkeer & Openbare Ruimte (V&OR): owner/source holder of the municipal tree dataset and an important policy/asset-management actor in public-space standards.",
       "why": "Important bridge between policy, public-space design and asset information.",
       "lenses": [
         "governance",
         "information",
         "lifecycle",
-        "policy"
+        "policy",
+        "projects"
       ],
       "sources": [
         "S3",
-        "S13"
+        "S13",
+        "S24"
       ],
       "confidence": "high",
       "translation": "Traffic & Public Space (Verkeer & Openbare Ruimte)"
@@ -156,17 +204,20 @@ window.TREE_GOV_MODEL = {
       "label": "Stadswerken / GFF",
       "type": "actor",
       "group": "operations",
-      "summary": "Operational public-space management. Groen, Flora en Fauna is responsible for daily maintenance of parks and tree/green assets.",
+      "summary": "Operational public-space organization. Within Stadswerken, Groen, Flora en Fauna is responsible for daily management and maintenance of parks and tree/green assets in public space.",
       "why": "Core operational manager of public greenery.",
       "lenses": [
         "governance",
         "lifecycle",
         "operations",
-        "participation"
+        "participation",
+        "information",
+        "policy"
       ],
       "sources": [
         "S11",
-        "S13"
+        "S13",
+        "S18"
       ],
       "confidence": "high",
       "translation": "Municipal Works / Green, Flora & Fauna"
@@ -176,7 +227,7 @@ window.TREE_GOV_MODEL = {
       "label": "Team Bomen",
       "type": "actor",
       "group": "operations",
-      "summary": "Specialist tree team working with tree contracts, inspections, felling/replanting procedures and emergency services.",
+      "summary": "Specialist tree team within Groen, Flora en Fauna. Current municipal recruitment material states that it manages trees in Centrum and some monumental trees elsewhere, and works with specialist contracts, inspections, felling/replanting procedures and emergency services.",
       "why": "Represents specialist arboricultural expertise inside the municipal management system.",
       "lenses": [
         "governance",
@@ -200,8 +251,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "governance",
         "ecology",
-        "policy",
-        "lifecycle"
+        "lifecycle",
+        "projects"
       ],
       "sources": [
         "S6",
@@ -211,22 +262,23 @@ window.TREE_GOV_MODEL = {
     },
     {
       "id": "a_districts",
-      "label": "District boards / permits",
+      "label": "District permit teams & daily boards",
       "type": "actor",
       "group": "governance",
-      "summary": "District governance and permit functions participate in decisions on tree-management plans and felling permissions.",
-      "why": "Represents the decentralized administrative decision layer.",
+      "summary": "For most tree-permit applications, postcode routes the application to the relevant district permit department and the district daily board takes the decision. Some metropolitan areas are handled by ODNZKG.",
+      "why": "Represents the normal district-level administrative and decision route for tree permits while making the ODNZKG exception explicit.",
       "lenses": [
         "governance",
         "permits",
-        "participation"
+        "participation",
+        "policy"
       ],
       "sources": [
-        "S9",
-        "S13",
-        "S15"
+        "S20",
+        "S19",
+        "S13"
       ],
-      "confidence": "medium"
+      "confidence": "high"
     },
     {
       "id": "a_projects",
@@ -275,7 +327,8 @@ window.TREE_GOV_MODEL = {
         "participation",
         "information",
         "permits",
-        "governance"
+        "governance",
+        "projects"
       ],
       "sources": [
         "S1",
@@ -303,11 +356,11 @@ window.TREE_GOV_MODEL = {
     },
     {
       "id": "r_vision",
-      "label": "Green / Spatial vision",
+      "label": "Green & spatial strategic frameworks",
       "type": "rule",
       "group": "policy",
-      "summary": "Long-term city goals for greening, liveability, ecological connectivity and public space.",
-      "why": "Provides strategic intent rather than an individual operational instruction.",
+      "summary": "A synthesis node grouping long-term citywide green and spatial goals that influence tree policy and public-space management.",
+      "why": "Represents the strategic policy layer rather than one single policy document.",
       "lenses": [
         "policy",
         "governance",
@@ -317,35 +370,37 @@ window.TREE_GOV_MODEL = {
         "S7",
         "S17"
       ],
-      "confidence": "high"
+      "confidence": "medium"
     },
     {
       "id": "r_puccini",
       "label": "Puccini + Handboek Groen",
       "type": "rule",
       "group": "policy",
-      "summary": "Design and technical standards for Amsterdam public space, including trees, planting conditions and biodiversity principles.",
+      "summary": "Amsterdam's public-space design standard. The policy framework and Handboek Groen translate city policy into design and technical requirements for green infrastructure, including trees and growing places.",
       "why": "Translates strategic goals into design constraints and repeatable technical choices.",
       "lenses": [
         "policy",
         "lifecycle",
         "projects",
-        "ecology"
+        "ecology",
+        "governance"
       ],
       "sources": [
         "S5",
-        "S6"
+        "S6",
+        "S24"
       ],
       "confidence": "high",
       "translation": "Puccini Method + Green Handbook"
     },
     {
       "id": "r_bomenverord",
-      "label": "Bomenverordening 2024",
+      "label": "Bomenverordening 2014",
       "type": "rule",
       "group": "legal",
-      "summary": "Legal framework governing protected tree stock, felling and associated obligations.",
-      "why": "Formal legal constraint on removal, major pruning and replacement.",
+      "summary": "Amsterdam's current municipal tree ordinance. It regulates felling and major tree interventions, sets refusal grounds, provides for replanting/financial compensation, protected-tree rules and possible Tree Effect Analysis requirements.",
+      "why": "Formal citywide legal basis for the local tree-permit and replanting regime.",
       "lenses": [
         "policy",
         "governance",
@@ -354,26 +409,30 @@ window.TREE_GOV_MODEL = {
       ],
       "sources": [
         "S8",
-        "S9"
+        "S19",
+        "S23"
       ],
       "confidence": "high",
-      "translation": "Tree Ordinance 2024"
+      "translation": "Tree Ordinance 2014"
     },
     {
       "id": "r_biodiv",
-      "label": "Biodiversity policy / plans",
+      "label": "Biodiversity policy / Plan 2025–2030",
       "type": "rule",
       "group": "policy",
-      "summary": "Policy direction for ecological management, connected habitats and biodiversity-sensitive green-space decisions.",
-      "why": "Introduces ecological objectives that extend beyond safety and asset condition.",
+      "summary": "Amsterdam biodiversity policy, including the 2025–2030 plan for the ecological structure and parks. It links ecological quality requirements to management contracts and monitoring; its formal action-plan scope is narrower than all street-tree management.",
+      "why": "Introduces ecological objectives and management/monitoring requirements while preserving the plan's actual scope.",
       "lenses": [
         "policy",
         "ecology",
-        "governance"
+        "governance",
+        "information",
+        "lifecycle",
+        "operations"
       ],
       "sources": [
         "S7",
-        "S13"
+        "S21"
       ],
       "confidence": "high"
     },
@@ -387,7 +446,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "policy",
         "governance",
-        "ecology"
+        "ecology",
+        "information"
       ],
       "sources": [
         "S5",
@@ -408,7 +468,8 @@ window.TREE_GOV_MODEL = {
         "projects",
         "lifecycle",
         "governance",
-        "ecology"
+        "ecology",
+        "participation"
       ],
       "sources": [
         "S6",
@@ -422,7 +483,7 @@ window.TREE_GOV_MODEL = {
       "label": "Tree Effect Analysis (BEA)",
       "type": "process",
       "group": "knowledge",
-      "summary": "Assesses tree condition/value and the effects of proposed works, supporting retention, transplanting or removal decisions.",
+      "summary": "A Tree Effect Analysis evaluates tree condition/value and likely effects of proposed works. Amsterdam may require one where works threaten the sustainable preservation of a protected tree, and major municipal projects also use BEAs as decision support.",
       "why": "Structured interface between infrastructure projects and tree expertise.",
       "lenses": [
         "projects",
@@ -431,6 +492,7 @@ window.TREE_GOV_MODEL = {
         "governance"
       ],
       "sources": [
+        "S8",
         "S14"
       ],
       "confidence": "high",
@@ -446,7 +508,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "lifecycle",
         "projects",
-        "ecology"
+        "ecology",
+        "policy"
       ],
       "sources": [
         "S4",
@@ -492,16 +555,19 @@ window.TREE_GOV_MODEL = {
       "label": "Routine inspection",
       "type": "process",
       "group": "monitoring",
-      "summary": "Periodic inspection for condition, disease and safety; results become part of the tree-management information system.",
+      "summary": "Routine safety/condition inspection of managed street and avenue trees. Amsterdam states that roughly 300,000 such trees are checked at least every three years, with older/monumental trees checked more often.",
       "why": "Main monitoring loop that turns physical tree state into actionable information.",
       "lenses": [
         "lifecycle",
         "information",
-        "operations"
+        "operations",
+        "participation"
       ],
       "sources": [
         "S1",
         "S2",
+        "S3",
+        "S4",
         "S12"
       ],
       "confidence": "high"
@@ -529,18 +595,22 @@ window.TREE_GOV_MODEL = {
       "label": "Assess condition & options",
       "type": "process",
       "group": "knowledge",
-      "summary": "Interprets inspection, project and ecological information to identify maintenance, retention, transplanting or removal options.",
+      "summary": "Interprets inspection, asset, project and—where relevant—ecological/legal information to identify options such as retention, maintenance, growing-place improvement, transplanting or removal.",
       "why": "Decision-preparation stage where multiple information streams converge.",
       "lenses": [
         "lifecycle",
         "information",
         "governance",
-        "ecology"
+        "ecology",
+        "projects",
+        "participation"
       ],
       "sources": [
-        "S10",
+        "S3",
+        "S8",
         "S12",
-        "S14"
+        "S14",
+        "S20"
       ],
       "confidence": "medium"
     },
@@ -549,17 +619,19 @@ window.TREE_GOV_MODEL = {
       "label": "Prune / maintain / improve site",
       "type": "process",
       "group": "operations",
-      "summary": "Routine or corrective care intended to maintain safety, condition and growing conditions.",
+      "summary": "Routine or corrective tree care, pruning and growing-place work. Municipal data records measures, urgency/planning and executing organizations; Stadswerken/GFF has daily tree-and-green maintenance responsibility.",
       "why": "Primary non-removal intervention in the lifecycle.",
       "lenses": [
         "lifecycle",
         "operations",
-        "ecology"
+        "ecology",
+        "governance"
       ],
       "sources": [
         "S1",
-        "S10",
-        "S12"
+        "S3",
+        "S12",
+        "S18"
       ],
       "confidence": "high"
     },
@@ -568,19 +640,21 @@ window.TREE_GOV_MODEL = {
       "label": "Management decision",
       "type": "process",
       "group": "governance",
-      "summary": "Selects a course of action: retain, maintain, improve growing place, transplant, fell, replace or escalate into a permit/project route.",
-      "why": "Abstract decision node where technical, ecological, legal and project considerations meet.",
+      "summary": "Analytical decision point representing selection of a management course: retain, maintain, improve growing place, transplant, fell/replace or move into a permit/project route.",
+      "why": "This is a synthesis node joining documented information and formal routes; it is not the name of one official Amsterdam procedure.",
       "lenses": [
         "lifecycle",
         "governance",
         "information",
-        "permits"
+        "permits",
+        "operations"
       ],
       "sources": [
-        "S9",
-        "S10",
+        "S3",
+        "S8",
         "S12",
-        "S14"
+        "S14",
+        "S20"
       ],
       "confidence": "medium"
     },
@@ -589,18 +663,20 @@ window.TREE_GOV_MODEL = {
       "label": "Felling / pruning permit process",
       "type": "process",
       "group": "legal",
-      "summary": "Formal omgevingsvergunning route for qualifying felling, major pruning or transplanting, including publication and objection periods.",
+      "summary": "Formal omgevingsvergunning route for felling, transplanting and qualifying major pruning. Most applications are processed through district permit teams/daily boards with municipal tree-expert advice; designated metropolitan areas are handled by ODNZKG.",
       "why": "Legal authorization layer between decision and many major interventions.",
       "lenses": [
         "permits",
         "governance",
         "lifecycle",
-        "participation"
+        "participation",
+        "information",
+        "policy"
       ],
       "sources": [
         "S8",
-        "S9",
-        "S10"
+        "S19",
+        "S20"
       ],
       "confidence": "high"
     },
@@ -614,7 +690,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "lifecycle",
         "operations",
-        "permits"
+        "permits",
+        "governance"
       ],
       "sources": [
         "S1",
@@ -629,19 +706,20 @@ window.TREE_GOV_MODEL = {
       "label": "Replant / compensate",
       "type": "process",
       "group": "operations",
-      "summary": "Replacement planting or financial compensation via the municipal replacement mechanism when applicable.",
+      "summary": "Replacement or compensation following felling. The ordinance normally attaches a replant obligation; Amsterdam's current compensation policy seeks equivalent replacement, with financial compensation to the municipal replant fund where physical replacement is not possible.",
       "why": "Closes the formal replacement loop after felling.",
       "lenses": [
         "lifecycle",
         "operations",
         "permits",
-        "governance"
+        "governance",
+        "information"
       ],
       "sources": [
-        "S1",
-        "S9",
-        "S10",
-        "S15"
+        "S8",
+        "S19",
+        "S20",
+        "S23"
       ],
       "confidence": "high"
     },
@@ -650,7 +728,7 @@ window.TREE_GOV_MODEL = {
       "label": "Monitor green outcomes",
       "type": "process",
       "group": "monitoring",
-      "summary": "City-level monitoring of green outcomes such as canopy cover, alongside ecological monitoring and programme evaluation.",
+      "summary": "Monitoring of green/ecological outcomes. The Plan Biodiversiteit requires recurring ecological monitoring/inspection in ecological core and connection zones, while Monitor Groen tracks broader city-level green indicators such as canopy cover.",
       "why": "Connects tree management back to wider ecological and policy outcomes.",
       "lenses": [
         "ecology",
@@ -659,9 +737,9 @@ window.TREE_GOV_MODEL = {
       ],
       "sources": [
         "S16",
-        "S7"
+        "S21"
       ],
-      "confidence": "medium"
+      "confidence": "high"
     },
     {
       "id": "d_treeasset",
@@ -673,7 +751,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "information",
         "lifecycle",
-        "participation"
+        "participation",
+        "governance"
       ],
       "sources": [
         "S2",
@@ -686,14 +765,15 @@ window.TREE_GOV_MODEL = {
       "label": "Inspection record",
       "type": "data",
       "group": "information",
-      "summary": "Recorded result of tree-safety/condition inspection.",
+      "summary": "Recorded result of a tree safety/condition inspection, linked to the managed tree in Amsterdam's GISIB-based data model.",
       "why": "Evidence object used in management decisions and asset history.",
       "lenses": [
         "information",
         "lifecycle"
       ],
       "sources": [
-        "S2"
+        "S2",
+        "S3"
       ],
       "confidence": "high"
     },
@@ -702,7 +782,7 @@ window.TREE_GOV_MODEL = {
       "label": "Maintenance task",
       "type": "data",
       "group": "information",
-      "summary": "Operational work item associated with managed trees.",
+      "summary": "Recorded management measure/work item for a tree, including manager decision, detailed measure, urgency/planning and executing organization where recorded.",
       "why": "Links assessment and planning to field execution.",
       "lenses": [
         "information",
@@ -710,7 +790,8 @@ window.TREE_GOV_MODEL = {
         "operations"
       ],
       "sources": [
-        "S2"
+        "S2",
+        "S3"
       ],
       "confidence": "high"
     },
@@ -741,7 +822,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "information",
         "projects",
-        "lifecycle"
+        "lifecycle",
+        "governance"
       ],
       "sources": [
         "S14"
@@ -753,16 +835,19 @@ window.TREE_GOV_MODEL = {
       "label": "Permit decision / conditions",
       "type": "data",
       "group": "legal",
-      "summary": "Formal decision and any conditions, such as replanting requirements, following the permit process.",
+      "summary": "Formal permit outcome and conditions, including possible replanting or financial-compensation requirements.",
       "why": "Legal object authorizing or restricting major tree intervention.",
       "lenses": [
         "permits",
         "governance",
-        "information"
+        "information",
+        "lifecycle",
+        "operations"
       ],
       "sources": [
         "S8",
-        "S9"
+        "S19",
+        "S20"
       ],
       "confidence": "high"
     },
@@ -771,7 +856,7 @@ window.TREE_GOV_MODEL = {
       "label": "Bomenboekhouding",
       "type": "data",
       "group": "accountability",
-      "summary": "Public accounting of tree-felling permit activity and replacement planting.",
+      "summary": "Public Bomenboekhouding reporting permit applications and decisions, number of trees permitted/refused, imposed replant and replant-fund amounts. It should not be read as a complete real-time record of completed replacement planting.",
       "why": "Transparency / accountability output across the permit and replanting system.",
       "lenses": [
         "information",
@@ -779,7 +864,8 @@ window.TREE_GOV_MODEL = {
         "governance"
       ],
       "sources": [
-        "S15"
+        "S15",
+        "S20"
       ],
       "confidence": "high",
       "translation": "Tree accounting / tree ledger"
@@ -789,18 +875,20 @@ window.TREE_GOV_MODEL = {
       "label": "Managed public tree stock",
       "type": "ecology",
       "group": "ecology",
-      "summary": "The physical stock of roughly 300,000 municipal-managed public trees that the management system acts upon.",
+      "summary": "The physical stock of roughly 300,000 municipality-managed public trees represented in Amsterdam's tree-management and asset-information systems.",
       "why": "The central physical object around which the governance network is organized.",
       "lenses": [
         "lifecycle",
         "ecology",
         "information",
-        "governance"
+        "operations",
+        "policy"
       ],
       "sources": [
         "S1",
         "S2",
-        "S10"
+        "S3",
+        "S4"
       ],
       "confidence": "high"
     },
@@ -809,7 +897,7 @@ window.TREE_GOV_MODEL = {
       "label": "Biodiversity & ecosystem services",
       "type": "ecology",
       "group": "ecology",
-      "summary": "Habitat, ecological connectivity, shade/cooling, water regulation and other public/ecological values produced by healthy urban trees.",
+      "summary": "Ecological and public values associated with urban trees, including habitat/connectivity, shade/cooling, water regulation and other ecosystem services.",
       "why": "Represents outcomes that tree management is intended to protect or increase.",
       "lenses": [
         "ecology",
@@ -818,8 +906,61 @@ window.TREE_GOV_MODEL = {
       ],
       "sources": [
         "S7",
-        "S10",
-        "S16"
+        "S16",
+        "S21",
+        "S23"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "a_council",
+      "label": "Municipal Council",
+      "type": "actor",
+      "group": "governance",
+      "summary": "Amsterdam's elected municipal council. It adopts municipal ordinances and citywide strategic frameworks that shape tree governance.",
+      "why": "The earlier prototype incorrectly combined the Council and College into one actor; they have distinct formal roles.",
+      "lenses": [
+        "governance",
+        "policy"
+      ],
+      "sources": [
+        "S8",
+        "S17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "a_treeexpert",
+      "label": "Municipal tree expert",
+      "type": "actor",
+      "group": "knowledge",
+      "summary": "A municipal boomdeskundige advises on every tree-felling permit application and may recommend refusal or an alternative that retains the tree.",
+      "why": "The current permit route explicitly requires specialist tree advice; this role was missing from the prototype.",
+      "lenses": [
+        "permits",
+        "governance",
+        "information"
+      ],
+      "sources": [
+        "S20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "a_odnzkg",
+      "label": "ODNZKG",
+      "type": "actor",
+      "group": "external government",
+      "summary": "Omgevingsdienst Noordzeekanaalgebied handles tree-felling permit applications in designated metropolitan areas such as Zuidas and Havengebied.",
+      "why": "Makes the documented exception to the normal district permit route visible.",
+      "translation": "North Sea Canal Area Environment Agency",
+      "lenses": [
+        "permits",
+        "governance"
+      ],
+      "sources": [
+        "S20",
+        "S23"
       ],
       "confidence": "high"
     }
@@ -827,14 +968,13 @@ window.TREE_GOV_MODEL = {
   "edges": [
     {
       "id": "e1",
-      "source": "a_college",
+      "source": "a_council",
       "target": "r_vision",
-      "label": "sets strategic direction",
+      "label": "adopts strategic framework",
       "group": "authority",
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S10",
         "S17"
       ],
       "lenses": [
@@ -921,18 +1061,19 @@ window.TREE_GOV_MODEL = {
       "id": "e6",
       "source": "a_vor",
       "target": "r_puccini",
-      "label": "maintains / applies standards",
+      "label": "operationalizes / applies standards",
       "group": "authority",
       "basis": "synthesis",
       "confidence": "medium",
       "sources": [
-        "S3",
-        "S5"
+        "S5",
+        "S24"
       ],
       "lenses": [
         "policy",
         "governance",
-        "projects"
+        "projects",
+        "lifecycle"
       ],
       "evidence": ""
     },
@@ -960,13 +1101,13 @@ window.TREE_GOV_MODEL = {
       "id": "e8",
       "source": "r_biodiv",
       "target": "p_site",
-      "label": "adds ecological criteria",
+      "label": "informs ecological priorities",
       "group": "authority",
-      "basis": "documented",
-      "confidence": "high",
+      "basis": "synthesis",
+      "confidence": "medium",
       "sources": [
         "S6",
-        "S7"
+        "S21"
       ],
       "lenses": [
         "policy",
@@ -989,7 +1130,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "projects",
         "ecology",
-        "governance"
+        "governance",
+        "lifecycle"
       ],
       "evidence": ""
     },
@@ -1006,7 +1148,8 @@ window.TREE_GOV_MODEL = {
       ],
       "lenses": [
         "projects",
-        "governance"
+        "governance",
+        "lifecycle"
       ],
       "evidence": ""
     },
@@ -1014,11 +1157,12 @@ window.TREE_GOV_MODEL = {
       "id": "e11",
       "source": "p_project",
       "target": "p_bea",
-      "label": "triggers when trees affected",
+      "label": "can trigger / require BEA when relevant",
       "group": "operation",
       "basis": "documented",
       "confidence": "high",
       "sources": [
+        "S8",
         "S14"
       ],
       "lenses": [
@@ -1041,7 +1185,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "projects",
         "information",
-        "lifecycle"
+        "lifecycle",
+        "governance"
       ],
       "evidence": ""
     },
@@ -1059,7 +1204,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "projects",
         "information",
-        "lifecycle"
+        "lifecycle",
+        "governance"
       ],
       "evidence": ""
     },
@@ -1112,8 +1258,7 @@ window.TREE_GOV_MODEL = {
         "S5"
       ],
       "lenses": [
-        "lifecycle",
-        "operations"
+        "lifecycle"
       ],
       "evidence": ""
     },
@@ -1247,7 +1392,8 @@ window.TREE_GOV_MODEL = {
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S2"
+        "S2",
+        "S3"
       ],
       "lenses": [
         "lifecycle",
@@ -1261,10 +1407,9 @@ window.TREE_GOV_MODEL = {
       "target": "d_treeasset",
       "label": "recorded in",
       "group": "information",
-      "basis": "synthesis",
+      "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S2",
         "S3"
       ],
       "lenses": [
@@ -1348,9 +1493,9 @@ window.TREE_GOV_MODEL = {
       "id": "e30",
       "source": "d_report",
       "target": "p_report",
-      "label": "enters",
+      "label": "is routed into",
       "group": "information",
-      "basis": "documented",
+      "basis": "synthesis",
       "confidence": "high",
       "sources": [
         "S1",
@@ -1368,11 +1513,10 @@ window.TREE_GOV_MODEL = {
       "target": "p_inspect",
       "label": "can trigger field check",
       "group": "information",
-      "basis": "synthesis",
-      "confidence": "medium",
+      "basis": "documented",
+      "confidence": "high",
       "sources": [
-        "S1",
-        "S2"
+        "S22"
       ],
       "lenses": [
         "participation",
@@ -1423,12 +1567,12 @@ window.TREE_GOV_MODEL = {
       "id": "e34",
       "source": "p_decide",
       "target": "d_task",
-      "label": "creates maintenance work",
+      "label": "sets / creates measure task",
       "group": "information",
-      "basis": "synthesis",
-      "confidence": "medium",
+      "basis": "documented",
+      "confidence": "high",
       "sources": [
-        "S2"
+        "S3"
       ],
       "lenses": [
         "lifecycle",
@@ -1441,12 +1585,12 @@ window.TREE_GOV_MODEL = {
       "id": "e35",
       "source": "d_task",
       "target": "p_maintain",
-      "label": "authorizes / schedules",
+      "label": "schedules / specifies work",
       "group": "operation",
-      "basis": "synthesis",
-      "confidence": "medium",
+      "basis": "documented",
+      "confidence": "high",
       "sources": [
-        "S2"
+        "S3"
       ],
       "lenses": [
         "lifecycle",
@@ -1461,8 +1605,9 @@ window.TREE_GOV_MODEL = {
       "label": "may execute contracted work",
       "group": "participation",
       "basis": "documented",
-      "confidence": "medium",
+      "confidence": "high",
       "sources": [
+        "S3",
         "S12"
       ],
       "lenses": [
@@ -1506,7 +1651,8 @@ window.TREE_GOV_MODEL = {
       "lenses": [
         "lifecycle",
         "permits",
-        "governance"
+        "governance",
+        "information"
       ],
       "evidence": ""
     },
@@ -1520,12 +1666,13 @@ window.TREE_GOV_MODEL = {
       "confidence": "high",
       "sources": [
         "S8",
-        "S9"
+        "S19"
       ],
       "lenses": [
         "permits",
         "governance",
-        "policy"
+        "policy",
+        "lifecycle"
       ],
       "evidence": ""
     },
@@ -1533,17 +1680,17 @@ window.TREE_GOV_MODEL = {
       "id": "e40",
       "source": "a_districts",
       "target": "p_permit",
-      "label": "administers / decides",
+      "label": "processes / decides normal district route",
       "group": "participation",
       "basis": "documented",
-      "confidence": "medium",
+      "confidence": "high",
       "sources": [
-        "S9",
-        "S15"
+        "S20"
       ],
       "lenses": [
         "permits",
-        "governance"
+        "governance",
+        "participation"
       ],
       "evidence": ""
     },
@@ -1556,7 +1703,8 @@ window.TREE_GOV_MODEL = {
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S9"
+        "S19",
+        "S20"
       ],
       "lenses": [
         "permits",
@@ -1569,13 +1717,13 @@ window.TREE_GOV_MODEL = {
       "id": "e42",
       "source": "a_residents",
       "target": "p_permit",
-      "label": "can object / participate",
+      "label": "can object to permit decision",
       "group": "participation",
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S1",
-        "S9"
+        "S19",
+        "S22"
       ],
       "lenses": [
         "permits",
@@ -1615,7 +1763,8 @@ window.TREE_GOV_MODEL = {
       ],
       "lenses": [
         "lifecycle",
-        "operations"
+        "operations",
+        "governance"
       ],
       "evidence": ""
     },
@@ -1632,7 +1781,8 @@ window.TREE_GOV_MODEL = {
       ],
       "lenses": [
         "lifecycle",
-        "operations"
+        "operations",
+        "governance"
       ],
       "evidence": ""
     },
@@ -1664,8 +1814,10 @@ window.TREE_GOV_MODEL = {
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S9",
-        "S10"
+        "S8",
+        "S19",
+        "S20",
+        "S23"
       ],
       "lenses": [
         "permits",
@@ -1677,18 +1829,21 @@ window.TREE_GOV_MODEL = {
       "id": "e48",
       "source": "p_intervene",
       "target": "p_replant",
-      "label": "creates replacement obligation",
+      "label": "normally leads to replacement / compensation",
       "group": "operation",
       "basis": "documented",
       "confidence": "high",
       "sources": [
         "S1",
-        "S9",
-        "S10"
+        "S19",
+        "S20",
+        "S23"
       ],
       "lenses": [
         "lifecycle",
-        "permits"
+        "permits",
+        "governance",
+        "operations"
       ],
       "evidence": ""
     },
@@ -1718,7 +1873,8 @@ window.TREE_GOV_MODEL = {
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S15"
+        "S15",
+        "S20"
       ],
       "lenses": [
         "permits",
@@ -1731,12 +1887,13 @@ window.TREE_GOV_MODEL = {
       "id": "e51",
       "source": "p_replant",
       "target": "d_account",
-      "label": "replacement recorded in",
+      "label": "imposed replant aggregated into",
       "group": "information",
       "basis": "documented",
       "confidence": "high",
       "sources": [
-        "S15"
+        "S15",
+        "S20"
       ],
       "lenses": [
         "permits",
@@ -1769,13 +1926,12 @@ window.TREE_GOV_MODEL = {
       "id": "e53",
       "source": "r_biodiv",
       "target": "p_biodivmonitor",
-      "label": "sets outcomes to track",
+      "label": "sets monitoring requirements / outcomes",
       "group": "authority",
-      "basis": "synthesis",
-      "confidence": "medium",
+      "basis": "documented",
+      "confidence": "high",
       "sources": [
-        "S7",
-        "S16"
+        "S21"
       ],
       "lenses": [
         "ecology",
@@ -1797,7 +1953,8 @@ window.TREE_GOV_MODEL = {
       ],
       "lenses": [
         "ecology",
-        "information"
+        "information",
+        "policy"
       ],
       "evidence": ""
     },
@@ -1843,7 +2000,7 @@ window.TREE_GOV_MODEL = {
       "id": "e57",
       "source": "a_districts",
       "target": "p_strategy",
-      "label": "adopts local management plans",
+      "label": "adopts selected local management plans",
       "group": "authority",
       "basis": "documented",
       "confidence": "medium",
@@ -1877,23 +2034,128 @@ window.TREE_GOV_MODEL = {
     },
     {
       "id": "e59",
-      "source": "p_assess",
-      "target": "e_outcomes",
-      "label": "considers ecological/public value",
+      "source": "e_outcomes",
+      "target": "p_assess",
+      "label": "nature / liveability values can inform",
       "group": "ecology",
-      "basis": "synthesis",
+      "basis": "documented",
       "confidence": "medium",
       "sources": [
-        "S6",
-        "S7",
-        "S10"
+        "S8",
+        "S14"
       ],
       "lenses": [
         "ecology",
-        "lifecycle",
-        "governance"
+        "lifecycle"
       ],
       "evidence": ""
+    },
+    {
+      "id": "e60",
+      "source": "a_council",
+      "target": "r_bomenverord",
+      "label": "adopted municipal ordinance",
+      "group": "authority",
+      "basis": "documented",
+      "confidence": "high",
+      "sources": [
+        "S8"
+      ],
+      "lenses": [
+        "policy",
+        "governance"
+      ],
+      "evidence": "The regulation metadata identifies the gemeenteraad as adopting authority."
+    },
+    {
+      "id": "e61",
+      "source": "a_college",
+      "target": "p_strategy",
+      "label": "directs executive implementation",
+      "group": "authority",
+      "basis": "synthesis",
+      "confidence": "medium",
+      "sources": [
+        "S8",
+        "S17",
+        "S23"
+      ],
+      "lenses": [
+        "policy",
+        "governance"
+      ],
+      "evidence": "Abstract implementation link; the college holds multiple executive powers but this node is not a single formal procedure."
+    },
+    {
+      "id": "e62",
+      "source": "a_treeexpert",
+      "target": "p_permit",
+      "label": "advises on every felling application",
+      "group": "participation",
+      "basis": "documented",
+      "confidence": "high",
+      "sources": [
+        "S20"
+      ],
+      "lenses": [
+        "permits",
+        "governance",
+        "information"
+      ],
+      "evidence": "Q2 2026 Bomenboekhouding states every application is assessed by a municipal tree expert."
+    },
+    {
+      "id": "e63",
+      "source": "a_odnzkg",
+      "target": "p_permit",
+      "label": "handles designated metropolitan-area applications",
+      "group": "participation",
+      "basis": "documented",
+      "confidence": "high",
+      "sources": [
+        "S20",
+        "S23"
+      ],
+      "lenses": [
+        "permits",
+        "governance"
+      ],
+      "evidence": "Q2 2026 Bomenboekhouding names Zuidas and Havengebied as examples."
+    },
+    {
+      "id": "e64",
+      "source": "r_biodiv",
+      "target": "p_maintain",
+      "label": "sets ecological management KPIs in parks / ecological structure",
+      "group": "authority",
+      "basis": "documented",
+      "confidence": "high",
+      "sources": [
+        "S21"
+      ],
+      "lenses": [
+        "ecology",
+        "governance",
+        "operations"
+      ],
+      "evidence": "Plan Biodiversiteit 2025–2030 puts ecological quality requirements into ecological green-management contracts."
+    },
+    {
+      "id": "e65",
+      "source": "r_bomenverord",
+      "target": "a_college",
+      "label": "assigns executive powers",
+      "group": "authority",
+      "basis": "documented",
+      "confidence": "high",
+      "sources": [
+        "S8"
+      ],
+      "lenses": [
+        "policy",
+        "governance"
+      ],
+      "evidence": "The ordinance assigns multiple powers to the college of mayor and alderpersons."
     }
   ]
 };

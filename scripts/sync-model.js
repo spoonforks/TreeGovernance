@@ -1,0 +1,1 @@
+const fs=require("fs");const model=JSON.parse(fs.readFileSync("data/model.json","utf8"));fs.writeFileSync("data/model.js","window.TREE_GOV_MODEL = "+JSON.stringify(model,null,2)+";\n");console.log("Synced model.js");

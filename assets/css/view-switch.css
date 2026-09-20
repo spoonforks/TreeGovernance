@@ -88,3 +88,17 @@
     gap: 6px;
   }
 }
+/* The exact same brand treatment in both renderers. */
+header.mode-header{padding:20px 30px;background:#fdfcf8;border-bottom:1px solid #d9dfd6;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Baskerville Old Face',Baskerville,Georgia,serif;color:#263c35}
+.mode-header .brand{display:flex;align-items:center;gap:14px;line-height:1.5;color:#263c35;text-decoration:none}
+.mode-header .brand strong{display:block;font-size:27px;font-weight:500;line-height:1.12}
+.mode-header .brand span span{display:block;font-size:15px;color:#65726b}
+.mode-header .brand-mark{font-size:45px;line-height:1;color:#386b58}
+.mode-header .view-switch{background:#fdfcf8;border-color:#d9dfd6}
+.mode-header .view-switch a{color:#263c35}
+.mode-header .view-switch a[aria-current=page]{background:#386b58;border-color:#386b58;color:#fff}
+.model-summary{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:8px 30px;color:#65726b;background:#fdfcf8;border-bottom:1px solid #d9dfd6;font-size:12px;line-height:1.5}
+body[data-view-mode=network] .app{grid-template-rows:auto auto auto minmax(650px,1fr)}
+.resource-line{stroke:#fbfaf6;stroke-width:1.6;pointer-events:none}
+.shape-chip.resource{width:16px;height:13px;background:#9b8aa8;border-top:3px double #fbfaf6;border-bottom:3px double #fbfaf6}
+@media(max-width:720px){header.mode-header{padding:16px 20px}.model-summary{padding:8px 20px}.mode-header .brand strong{font-size:27px}}

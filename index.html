@@ -6,17 +6,30 @@
   <meta name="description" content="Explore Amsterdam tree governance at three levels: the system, action situations, and evidenced relationships between elements.">
   <meta name="theme-color" content="#f5f3ec">
   <link rel="stylesheet" href="assets/css/explorer.css?v=0.4">
+  <link rel="stylesheet" href="assets/css/view-switch.css?v=1">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to explorer</a>
-<header class="masthead">
+<header class="masthead mode-header">
   <a href="#view=system" class="brand"><span class="brand-mark" aria-hidden="true">↟</span><span><strong>Amsterdam</strong><span>Tree Governance Explorer</span></span></a>
+  <div class="mode-controls">
+    <nav class="view-switch" aria-label="View mode">
+      <a href="index.html" aria-current="page" title="Explore the system, action situations and individual elements">
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m2 5 8-3 8 3-8 3-8-3Zm0 5 8 3 8-3M2 15l8 3 8-3"/></svg>
+        <span>Three-level</span>
+      </a>
+      <a href="legacy.html" title="Open the previous full network with lenses and graph layouts">
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m6 5 8 3M5 7l2 7m7-3-5 4"/><circle cx="4" cy="4" r="2.5"/><circle cx="16" cy="9" r="2.5"/><circle cx="7" cy="16" r="2.5"/></svg>
+        <span>Network graph</span>
+      </a>
+    </nav>
   <div class="header-tools"><span class="version">RESEARCH ATLAS <b>v0.4</b></span><button data-action="method">About the model</button><a href="https://github.com/spoonforks/TreeGovernance" target="_blank" rel="noopener">GitHub ↗</a></div>
+  </div>
 </header>
 <nav class="nav-bar" aria-label="Exploration levels"><div id="levels"></div><div class="tools"><button data-action="trace">Trace a route</button><button data-action="export">Export model</button></div></nav>
 <div class="search-bar"><div id="breadcrumbs" aria-label="Breadcrumb"></div><div class="search-wrap"><label for="search">Find an element</label><input id="search" type="search" autocomplete="off" placeholder="Tree expert, permit, replant fund…"><div id="searchResults" hidden></div></div></div>
 <div class="workspace"><main id="main" tabindex="-1"><div class="loading">Loading the three-level model…</div></main><aside id="inspector" aria-label="Selection details"></aside></div>
-<footer class="site-footer"><span>Research synthesis · not an official municipal process map</span><span>Same elements. Different levels of detail. <a href="legacy.html">Previous flat map ↗</a></span></footer>
+<footer class="site-footer"><span>Research synthesis · not an official municipal process map</span><span>Same elements. Different levels of detail. <a href="legacy.html">Network graph ↗</a></span></footer>
 <dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialog-top"><h2 id="dialogTitle"></h2><button data-action="close-dialog" aria-label="Close dialog">Close ×</button></div><div id="dialogBody"></div></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 <noscript>This explorer needs JavaScript. The underlying model and sources are available in the GitHub repository.</noscript>

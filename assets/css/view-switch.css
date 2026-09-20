@@ -1,0 +1,90 @@
+/* Shared, always-visible navigation between the two existing explorers.
+   These are real links: keyboard navigation, Back and opening in a new tab work
+   without JavaScript. Keep this outside .header-tools (hidden on small screens). */
+.mode-header {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.mode-header > .title,
+.mode-header > .brand {
+  min-width: 0;
+}
+.mode-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-left: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+.view-switch {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: stretch;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid var(--line, #d9dfd6);
+  border-radius: 11px;
+  background: var(--panel, #fdfcf8);
+  max-width: 100%;
+}
+.view-switch a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--ink, #263c35);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.view-switch a:hover {
+  background: var(--soft, #eaf0e7);
+  text-decoration: none;
+}
+.view-switch a[aria-current="page"] {
+  background: var(--accent, #386b58);
+  border-color: var(--accent, #386b58);
+  color: #fff;
+  font-weight: 600;
+}
+.view-switch a:focus-visible {
+  outline: 3px solid var(--accent, #386b58);
+  outline-offset: 3px;
+}
+.view-switch svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .mode-controls {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+  .view-switch {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+  .view-switch a {
+    padding: 8px;
+    gap: 6px;
+  }
+}

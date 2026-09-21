@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>Hoofdgroenstructuur Network | Amsterdam Tree Governance Explorer</title>
+<meta name="description" content="An interactive, sourced actor network comparing Amsterdam's original HGS proposal with the post-referendum revision pathway.">
+<link rel="stylesheet" href="assets/css/hgs.css?v=1">
+<link rel="stylesheet" href="assets/css/view-switch.css?v=3">
+</head>
+<body data-view-mode="hgs">
+<a class="skip" href="#sideBody">Skip graph and use actor details</a>
+<div class="app">
+<header class="masthead mode-header"><a href="index.html" class="brand" aria-label="Amsterdam Tree Governance Explorer home"><span class="brand-mark" aria-hidden="true">&#8607;</span><span><strong>Amsterdam</strong><span>Tree Governance Explorer</span></span></a><div class="mode-controls"><nav class="view-switch" aria-label="View mode"><a href="index.html" data-mode="network" title="Explore the full network of the shared system"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m6 5 8 3M5 7l2 7m7-3-5 4"/><circle cx="4" cy="4" r="2.5"/><circle cx="16" cy="9" r="2.5"/><circle cx="7" cy="16" r="2.5"/></svg><span>Network graph</span></a><a href="three-level.html" data-mode="three-level" title="Explore the same system at three levels"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m2 5 8-3 8 3-8 3-8-3Zm0 5 8 3 8-3M2 15l8 3 8-3"/></svg><span>Three-level</span></a><a href="hoofdgroenstructuur.html" data-mode="hgs" aria-current="page" title="Explore the original HGS proposal and the revision pathway"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 18v-5M5 18h10M10 2 4 8h3l-4 5h14l-4-5h3L10 2Z"/></svg><span>Hoofdgroenstructuur</span></a></nav></div></header>
+<section class="titlebar" aria-label="Network topic and policy period">
+ <div><h1>Hoofdgroenstructuur</h1><p>Actors, responsibilities and connections across two policy moments.</p></div>
+ <div class="header-tools"><button id="helpBtn" title="How to use this explorer">Guide</button><button id="exportBtn" class="export-button" title="Export the sourced network and local notes as JSON">Export data</button><button id="panelBtn" aria-pressed="true" title="Show or hide the inspector">Inspector</button></div>
+ <div class="phase-switch" role="group" aria-label="Policy period">
+  <button data-phase="both" class="active" aria-pressed="true">Compare both</button>
+  <button data-phase="original" aria-pressed="false"><span class="dot old"></span>Original proposal</button>
+  <button data-phase="revision" aria-pressed="false"><span class="dot new"></span>Future revision</button>
+ </div>
+</section>
+<section class="toolbar" aria-label="Network filters">
+ <div class="control search-control"><label for="search">Find an actor or responsibility</label><input type="search" id="search" placeholder="e.g. R&amp;D, courtyard, Vera Adels" autocomplete="off" aria-controls="searchResults" aria-expanded="false"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg><div class="search-results" id="searchResults" hidden></div></div>
+ <div class="control"><label for="lens">Responsibility lens</label><select id="lens"><option value="all">All responsibilities</option><option value="authority">Decisions &amp; authority</option><option value="drafting">Drafting &amp; authorship</option><option value="advice">Advice &amp; knowledge</option><option value="participation">Resident participation</option><option value="coordination">Process coordination</option><option value="evaluation">Monitoring &amp; evaluation</option></select></div>
+ <div class="control"><label for="scope">Network detail</label><select id="scope"><option value="core">Key actors &amp; channels</option><option value="all">All documented contributors</option></select></div>
+ <label class="check-control"><input id="people" type="checkbox">Named people</label>
+ <label class="check-control"><input id="planned" type="checkbox" checked>Planned links</label>
+ <span class="spacer"></span><button class="compact-button" id="resetBtn">Reset view</button>
+</section>
+<div class="workspace" id="workspace">
+ <main class="network-panel" aria-label="Interactive actor network">
+  <div class="network-top"><div id="breadcrumbs" class="crumbs">Comparison network</div><div class="network-options"><label for="labels">Link labels</label><select id="labels" aria-label="Connection label visibility"><option value="selected">On selection</option><option value="all">All, where space permits</option><option value="none">Hidden</option></select><span id="counts"></span></div></div>
+  <div class="stage" id="stage">
+   <div class="phase-captions" id="phaseCaptions"><span class="old">Original proposal / 2021-2024</span><span class="both">Institutions in both processes</span><span class="new">Revision pathway / 2025 onward</span></div>
+   <svg id="graph" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Interactive network. Select a node or connection to read its role and sources. Drag the background to pan; use the zoom controls."><defs id="svgDefs"></defs><g id="viewport"><g id="edgeLayer"></g><g id="edgeHitLayer"></g><g id="labelLayer"></g><g id="nodeLayer"></g></g></svg>
+   <div class="map-hint" id="mapHint">Select to inspect &middot; Drag to rearrange &middot; Scroll to zoom</div>
+   <div class="map-controls" aria-label="Graph controls"><button id="zoomOut" aria-label="Zoom out">&minus;</button><button id="zoomRead" class="zoom-read" title="Fit network">100%</button><button id="zoomIn" aria-label="Zoom in">+</button><button id="fitBtn" title="Fit the visible network">Fit</button><button id="tidyBtn" title="Restore the arrangement for the visible network">Tidy</button></div>
+   <div class="loading-mask" id="loading" hidden><span>Arranging the network&hellip;</span></div>
+   <div class="empty-overlay" id="emptyGraph" hidden>No connections match these filters.<br><button id="emptyReset">Reset filters</button></div>
+  </div>
+  <div class="network-bottom"><span><i class="dot old"></i>Original</span><span><i class="dot new"></i>Revision pathway</span><span><i class="dot both"></i>Both processes</span><i class="legend-divider"></i><span><i class="sample"></i>Recorded</span><span><i class="sample planned"></i>Intended</span><span><i class="sample affiliation"></i>Affiliation</span><i class="legend-divider"></i><span><i class="legend-shape actor"></i>Actor</span><span><i class="legend-shape policy"></i>Policy</span><span><i class="legend-shape process"></i>Process</span><span><i class="legend-shape output"></i>Output</span></div>
+ </main>
+ <aside class="inspector" id="inspector" aria-label="Network inspector"><div class="side-nav"><div class="tabs" role="group" aria-label="Inspector panel"><button data-tab="inspect" class="active">Inspect</button><button data-tab="actors">Directory</button><button data-tab="sources">Sources</button></div><button id="clearSelection" class="quiet" title="Clear selection" aria-label="Clear selection">&#215;</button></div><div class="side-body" id="sideBody" tabindex="-1"></div></aside>
+</div>
+<footer class="site-footer"><span>Independent research map &middot; Evidence checked 21 Sep 2026 &middot; <button id="limitationsBtn">Scope &amp; limitations</button></span><span id="datasetStats"></span></footer>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div><div class="toast" id="toast" role="status" hidden></div><div class="sr-only" id="live" aria-live="polite"></div>
+<dialog id="dialog"><div class="dialog-head"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="Close dialog">&#215;</button></div><div id="dialogBody"></div></dialog>
+<script src="data/hgs.js?v=1"></script>
+<script src="assets/js/view-shell.js?v=3"></script>
+<script src="assets/js/hgs.js?v=1"></script>
+<noscript>This explorer needs JavaScript. The sourced network is available in data/hgs.js.</noscript>
+</body></html>

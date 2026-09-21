@@ -1,6 +1,5 @@
-/* Shared, always-visible navigation between the two existing explorers.
-   These are real links: keyboard navigation, Back and opening in a new tab work
-   without JavaScript. Keep this outside .header-tools (hidden on small screens). */
+/* Shared, always-visible navigation across all three explorers.
+   Real links keep keyboard navigation, Back and new tabs working without JavaScript. */
 .mode-header {
   flex-wrap: wrap;
   align-items: center;
@@ -21,7 +20,7 @@
 }
 .view-switch {
   display: inline-grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(3, auto);
   align-items: stretch;
   gap: 3px;
   padding: 4px;
@@ -81,14 +80,18 @@
   }
   .view-switch {
     width: 100%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .view-switch a {
     padding: 8px;
     gap: 6px;
   }
 }
-/* The exact same brand treatment in both renderers. */
+@media (max-width: 540px) {
+  .view-switch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .view-switch a[data-mode="hgs"] { grid-column: 1 / -1; }
+}
+/* The exact same brand treatment in all renderers. */
 header.mode-header{padding:20px 30px;background:#fdfcf8;border-bottom:1px solid #d9dfd6;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Baskerville Old Face',Baskerville,Georgia,serif;color:#263c35}
 .mode-header .brand{display:flex;align-items:center;gap:14px;line-height:1.5;color:#263c35;text-decoration:none}
 .mode-header .brand strong{display:block;font-size:27px;font-weight:500;line-height:1.12}
